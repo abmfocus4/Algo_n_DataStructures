@@ -1,0 +1,107 @@
+Project Description
+
+This project will implement a trie data structure using recursive programming. 
+
+A trie is a 26-ary tree where the root node represents an empty string “” and if the kth (k going from 0 to 25) sub-tree is not a null sub-tree, it represents a string that is the concatenation of string
+represented by the parent and the kth letter of the alphabet (where a is the 0th letter, b is the 1st
+letter, and so on). 
+
+Each node may or may not indicate that it is a terminal entry for a word.
+
+Characters and Strings
+
+This project will work with characters and strings. A string is a list of characters. In C,
+a string of n characters is an array of type char of size n + 1 or greater where the (n + 1)th
+character is the null character '\0'. Fortunately, in C++, there is a string class in the standard
+library. You can include i with: #include <string.h>. As this is in the standard template library,
+the class is defined within the std namespace: std::string. To access the kth character, use an
+index (similar to arrays). *Can also use the cctype library to work with characters.
+
+Class Specifications
+
+This project will implement two classes:
+
+• Trie.h that contains the root node, from where every other node in the tree can be
+reached, and
+• Trie_node.h that represents each node in the tree.
+
+Trie.h
+
+This is the class that implements a trie. 
+In the following, the variable n represents length of a
+string; that is, the number of characters making up the string. This trie tree is not case sensitive;
+that is, the words “Hello”, “hello” and “HELLO” all represent the same word.(𝑛 indicates the number of characters in the string and 𝑁 indicates the number of strings).
+
+Member Variables
+
+The Trie class has two member variables:
+• A pointer to the root node, and
+• An integer variable storing the number of words in the tree (that is, the size).
+
+Accessors
+
+This class has four accessors:
+● bool empty() const - Return true if the trie is empty (the size is 0). (O(1))
+● int size() const - Return the number of words in the trie. (O(1))
+● Trie_node *root() const - Return a pointer to the root node. (O(1))
+● bool member( std::String str ) const - Return true if the word represented by the string
+is in the Trie and false otherwise. If the string contains any characters other than those of
+the English alphabet (‘A’ through ‘Z’ or ‘a’ through ‘z’), the program throws an illegal_argument
+exception. (O(n))
+
+
+Mutators
+
+This class has three mutators:
+
+● bool insert( std::string str) - Insert the word represented by str into the tree. If the string
+contains any characters other than those of the English alphabet (‘A’ through ‘Z’ or ‘a’
+through ‘z’), this program throws an illegal_argument exception; otherwise if the string is already in the tree, return false; otherwise, return true (the insertion was successful). This is done by
+calling insert on the root, and if the root node is null (O(n))
+
+● bool erase( std::string str) - Erase the word represented by str from the tree. If the
+string contains any characters other than those of the English alphabet (‘A’ through ‘Z’ or
+‘a’ through ‘z’), throw an illegal_argument exception; otherwise if the string is not in the
+tree, return false; otherwise, return true (the erase was successful). If the tree is empty,
+return false, otherwise this function calls erase on the root. If the word erased is the last
+one in the tree, delete the root node. (O(n))
+
+● void clear() - Delete all the nodes in the tree. Again, if the tree is not empty, it should just
+call clear on the root and set the appropriate member variables. (O(N) where N is the
+number of words in the tree)
+
+Trie_node.h
+
+This class implements the nodes of trie. 
+
+Member Variables
+
+This Trie_node has two member variables:
+
+• A pointer to an array of pointers to trie nodes, and
+• A Boolean flag indicating whether a node represents a terminal node for a word.
+
+There is also a constant static member variable CHARACTERS that is assigned the value 26.
+
+Constructor
+
+The constructor sets the pointer to children to null and sets the Boolean flag to false.
+
+Accessors
+
+This Trie_node class has two accessors:
+
+● Trie_node *child( int n ) const - Return a pointer to the n-th child. If the children array is
+empty, return nullptr; otherwise, just return children[i]. This member function will
+never be called with a value outside 0 to 25. (O(1))
+
+● bool member( std::string const &str, int depth ) const - The string being searched for is
+being passed recursively; however, as we go deeper into the tree, we must have access to
+the character corresponding to the depth. You can assume that the characters are
+all alphabetical, as the Trie class should have checked for invalid characters.
+The trie tree is not case sensitive, so you must map letters to the range 0 to 25. If we are
+at the end of the word, the is_terminal member variable will determine the appropriate
+return value; otherwise, we need to call member recursively or return false, as
+appropriate. The program returns the appropriate values in all cases, including: when
+children are null, when the appropriate child pointer is assigned null, and otherwise.
+(O(n)).
