@@ -1,0 +1,49 @@
+Project Description
+
+This project, implements the Minimum Spanning Tree (MST) of a weighted undirected graph,
+using the Prim’s algorithm. We consider the nodes in the graph to be numbered from 0 to n – 1. This
+means a graph with 4 nodes, has nodes named 0, 1, 2 and 3. The nodes may be connected with
+undirected edges. Each edge has a weight (a positive number and of double type) associated with it.
+
+Class Specification
+
+The Weighted_graph class represents a weighted undirected graph. One of its methods obtains the
+minimum spanning tree of a graph, using Prim's algorithm.
+
+Member Variables
+
+double **graph_matrix;
+
+Constructor
+
+Weighted_graph ( int n = 50 )
+
+Construct a weighted undirected graph with n vertices (by default 50).Throw
+illegal_argument exception if the argument is less than 0.
+
+Destructor
+
+~ Weighted_graph ()
+Cleans up any allocated memory.
+
+Accessors
+
+The class has the following accessors:
+
+● int degree( int n ) const - Returns the degree of the vertex n. Throw illegal_argument exception
+if the argument does not correspond to an existing vertex. (O(1))
+● int edge_count() const - Returns the number of edges in the graph. (O(1))
+● double minimum_spanning_tree( int m ) const - Returns the total weight of the minimum
+spanning tree of those nodes which are connected to vertex m. Throw an illegal_argument
+exception if the arguments do not correspond to existing vertices.
+● double adjacent( int m, int n ) const - Returns the weight of the edge connecting vertices m and
+n. If the vertices are equal, return 0. If the vertices are not adjacent, return infinity.
+● bool is_connected() const - Determines if the graph is connected.
+
+Mutators
+The class has the following mutator:
+● void insert( int m, int n, double w ) If the weight w < 0 or w = ∞, throw an illegal argument
+exception. If the weight w is 0, remove any edge between m and n (if any). Otherwise, add an
+edge between vertices m and n with weight w. If an edge already exists, replace the weight of
+the edge with the new weight. If the vertices do not exist or are equal, throw an illegal
+argument exception.
