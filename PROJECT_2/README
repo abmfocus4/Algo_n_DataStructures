@@ -1,0 +1,60 @@
+Project Description:
+
+In this project, I designed and implemented a hash table data structure. In this data structure, values are mapped to a position in a table using a hash function. For this project, a hash table collisions resolve using double hashing.
+
+Class Specifications:
+
+The DoubleHashTable class implements a hash table using double hashing to resolve collisions. In what follows, the number of elements in the hash table is n and the size of the hash table is M.
+
+Hash Functions:
+
+The double hashing uses a hash function of the form ℎ 𝑘, 𝑖 = ℎ! 𝑘 + 𝑖ℎ!(𝑘) 𝑚𝑜𝑑 𝑀. The initial
+probe goes to position ℎ! 𝑘 (so we have i = 0); successive probe positions are offset from previous
+positions by amount ℎ!(𝑘) modulo 𝑀. In this project, ℎ! 𝑘 first statically casts the input to an int, then takes this integer module M (i.e. 𝑘%𝑀) and finally adding M if the value is negative. The hash function ℎ!(𝑘), (that determines the offset) is derived from the integer divided by M module M, ( 𝑘/𝑀 %𝑀). If necessary, this value should be made positive by adding M. Add 1 if the resulting value is even in order to make it odd when necessary.
+
+Member Variables:
+
+The DoubleHashTable class has at least the following member variables (you may need additional
+member variables):
+
+● T *array - An array of objects of type T. The array contains the values placed in the hash table
+● state *array_state - An array of objects of type “state” – to store the status of the bin. The state
+of a bin is one of three possible values: EMPTY, OCCUPIED, or DELETED
+● int count - The number of elements currently in the hash table
+● int array_size - The capacity of the hash table
+● int power - This is associated with the capacity of the hash table (array_size = 2!"#$%)
+
+Constructor
+
+DoubleHashTable ( int m = 5 )
+
+The constructor takes an argument m and creates a hash table with 2m bins, indexed from 0 to 2m − 1.
+The default value of m is 5. Notice that you need to allocate and initialize two arrays, one for storing the values in the hash table, and one for storing the status of the bins.
+
+Destructor
+
+~DoubleHashTable ()
+The destructor deletes the memory allocated for the hash table. Notice that the hash table has been
+represented using two arrays, and they both need to be deleted.
+
+Accessors
+
+This class has six accessors:
+● int size() const - Return the number of elements currently stored in the hash table. (O(1))
+● int capacity() const - Return the number of bins in the hash table. (O(1))
+● bool empty() const - Return true if the hash table is empty, false otherwise. (O(1))
+● bool member(T const &) const - Return true if object obj is in the hash table and false
+otherwise. (O(1))
+● T bin(int b) const-Return the entry in bin b. The behaviour of this function is undefined if the
+bin is not filled. It will only be used to test the class with the expected locations. (O(1))
+● void print() const - A function you can use to print the class for debugging purposes. 
+
+Mutators
+
+This class has three mutators:
+● void insert(T const & ) - Insert the new object into the hash table in the appropriate bin as
+determined by the two aforementioned hash functions and the rules of double hashing. If the
+table is full, the program throws an overflow exception. (O(1))
+● bool remove(T const & ) - Remove the object from the hash table if it is in the hash table
+(returning false if it is not) by setting the corresponding flag of the bin to deleted. (O(1))
+● void clear() - Remove all the elements in the hash table. (O(M))
